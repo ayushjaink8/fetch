@@ -11,10 +11,10 @@ app.get("/api/json", async (req, res) => {
   try {
     const response = await axios.get(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+        'Referer': url
       }
     });
-    // console.log(response);
     res.json({
       status: response.status,
       statusText: response.statusText,
@@ -24,10 +24,8 @@ app.get("/api/json", async (req, res) => {
         method: req.method,
         url: req.url,
         headers: req.headers,
-        // Add any other desired properties from the request object
       },
       data: response.data
-      // Add any other desired properties from the response object
     });
   } catch (e) {
     res.status(500).send({ message: "Error fetching url", error: e });
@@ -40,10 +38,10 @@ app.get("/api", async (req, res) => {
   try {
     const response = await axios.get(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+        'Referer': url
       }
     });
-    // console.log(response);
     res.send(response.data);
   } catch (e) {
     res.status(500).send({ message: "Error fetching url", error: e });
